@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+    <h1>Project {{ project.name }}</h1>
+    <p>Client: <a href='{{ path('client_show', {'id': project.client.id}) }}'>{{ project.client.name }}</a></p>
+    {# <p>Project {{ project.budget }}</p> #}
+    {% if project.description %}
+        <div>
+            <p>Description: {{ project.description }}</p>
+        </div>
+    {% endif %}
+
+    <h2>Tasks</h2>
+    <p><a href="{{ path('task_create') }}" class="btn btn-primary">New task</a></p>
+    
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Name</th>
+                <th scope="col">Created At</th>
+                <th scope="col">Started At</th>
+                <th scope="col">Finshed At</th>
+                <th scope="col">Estimated Time</th>
+                <th scope="col">Spent Time</th>
+                <th scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for task in project.tasks %}
+                <tr>
+                    <th scope="row">{{ task.id }}</th>
+                    <td><a href="{{ path('task_show', {'id': task.id}) }}">{{ task.name }}</a></td>
+                    <td>{{ task.createdAt|date("m/d/Y") }}</td>
+                    <td>{{ task.startedAt|date("m/d/Y") }}</td>
+                    <td>{{ task.finishedAt|date("m/d/Y") }}</td>
+                    <td>{{ task.estimatedTime }}</td>
+                    <td>{{ task.spentTime }}</td>
+                    <td>
+                        <a class='btn btn-warning' href='{{ path('task_edit', {'id': task.id}) }}'>Edit</a>
+                        <a class='btn btn-danger' href='{{ path('task_create') }}'>Delete</a>
+                    </td>
+                </tr>
+            {% endfor %}
+            
+        </tbody>
+    </table>
+
+{% endblock %}

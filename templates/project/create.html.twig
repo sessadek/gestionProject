@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+    <h1>
+        {% if editMode %}
+            Edit project
+        {% else %}
+            Create project
+        {% endif %}
+    </h1>
+    {{ form_start(form) }}
+        {{ form_widget(form) }}
+        
+        <button class="btn btn-success" type="submit">
+        {% if editMode %}
+            Edit project
+        {% else %}
+            Create project
+        {% endif %}
+        </button>
+    {{ form_end(form) }}
+
+{% endblock %}

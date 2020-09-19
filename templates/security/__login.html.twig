@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Login</h1>
+    <form action=" {{ path('security_login') }}" method="POST">
+        <div class="form-group">
+            <input type="text" class="form-control" required name="_username">
+        </div>
+        <div class="form-group">
+            <input type="password" class="form-control" required name="_password">
+        </div>
+        <button type="submit" class="btn btn-primary">Connecter</button>
+    </form>
+{% endblock %}
